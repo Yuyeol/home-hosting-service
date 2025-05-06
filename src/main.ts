@@ -6,11 +6,11 @@ import { join } from 'path';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  // CORS 설정 (React 클라이언트의 접근 허용)
+  // CORS 설정 (모든 클라이언트 접근 허용)
   app.enableCors({
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+    origin: '*', // 모든 출처 허용
     methods: ['GET', 'POST'],
-    credentials: true,
+    credentials: false, // 모든 출처를 허용할 때는 credentials를 false로 설정해야 함
   });
 
   // 정적 파일 서비스 설정
